@@ -2,40 +2,46 @@ const Engineer = require('./Engineer');
 const Intern = require('./Intern');
 const Manager = require('./Manager');
 const inquirer = require('inquirer');
+// const Employee = require('./Employee');
 const fs = require('fs');
 const generateHtml = require('../util/generateHtml');
 
 const teamMembers = [];
 
 function askQuestion() {
-    console.log('Welcome to the team generator');
-    console.log('use: npm run reset');
+    // console.log('Welcome to the team generator');
+    // console.log('use: npm run reset');
     inquirer.prompt([
         {
             type: 'input',
-            message: 'What is the team managers name?',
-            name: 'name'
+            name: 'name',
+            message: 'What is the team managers name?'
+            
         },
         {
             type: 'input',
-            message: 'What is the team managers id?',
-            name: 'id'
+            name: 'id',
+            message: 'What is the team managers id?'
+            
         },
         {
             type: 'input',
-            message: 'What is the team managers email?',
-            name: 'email'
+            name: 'email',
+            message: 'What is the team managers email?'
+            
         },
         {
             type: 'input',
-            message: 'What is the team managers office number?',
-            name: 'officeNumber'
+            name: 'officeNumber',
+            message: 'What is the team managers office number?'
+            
         },
         {
             type: 'list',
+            name: 'teamMemberType',
             message: 'Which type of team member do you want to add?',
-            choices: ['Engineer', 'Intern', 'I do not want to add any more team members.'],
-            name: 'teamMemberType'
+            choices: ['Engineer', 'Intern', 'I do not want to add any more team members.']
+            
         },
     ]).then(managerAnswers => {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber);
@@ -55,29 +61,34 @@ function askQuestion() {
             inquirer.prompt([
                     {
                         type: 'input',
-                        message: 'What is the Engineers name?',
-                        name: 'name'
+                        name: 'name',
+                        message: 'What is the Engineers name?'
+                        
                     },
                     {
                         type: 'input',
-                        message: 'What is the Engineers id?',
-                        name: 'id'
+                        name: 'id',
+                        message: 'What is the Engineers id?'
+                        
                     },
                     {
                         type: 'input',
-                        message: 'What is the Engineers email?',
-                        name: 'email'
+                        name: 'email',
+                        message: 'What is the Engineers email?'
+                        
                     },
                     {
                         type: 'input',
-                        message: 'What is the Engineers GitHub?',
-                        name: 'github'
+                        name: 'github',
+                        message: 'What is the Engineers GitHub?'
+                        
                     },
                     {
                         type: 'list',
+                        name: 'teamMemberType',
                         message: 'Which type of team member do you want to add?',
-                        choices: ['Engineer', 'Intern', 'I do not want to add any more team members.'],
-                        name: 'teamMemberType'
+                        choices: ['Engineer', 'Intern', 'I do not want to add any more team members.']
+                        
                     },
                 ]).then(engineerAnswers => {
                     const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
@@ -97,29 +108,34 @@ function askQuestion() {
         inquirer.prompt([
             {
                 type: 'input',
-                message: 'What is the Interns name?',
-                name: 'name'
+                name: 'name',
+                message: 'What is the Interns name?'
+                
             },
             {
                 type: 'input',
-                message: 'What is the Interns id?',
-                name: 'id'
+                name: 'id',
+                message: 'What is the Interns id?'
+                
             },
             {
                 type: 'input',
-                message: 'What is the Interns email?',
-                name: 'email'
+                name: 'email',
+                message: 'What is the Interns email?'
+                
             },
             {
                 type: 'input',
-                message: 'What is the Interns School?',
-                name: 'school'
+                name: 'school',
+                message: 'What is the Interns School?'
+                
             },
             {
                 type: 'list',
+                name: 'teamMemberType',
                 message: 'Which type of team member do you want to add?',
-                choices: ['Engineer', 'Intern', 'I do not want to add any more team members.'],
-                name: 'teamMemberType'
+                choices: ['Engineer', 'Intern', 'I do not want to add any more team members.']
+                
             },
         ]).then(internAnswers => {
             const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
@@ -129,14 +145,26 @@ function askQuestion() {
             } else if (internAnswers.teamMemberType === 'Intern') {
                 askInternQuestions();
             } else {
-                generateHtml(teamMembers);
-            }
-            fs.writeFile('index.html', htmlPageContent, (err) =>
+                const html = generateHtml(teamMembers);
+                fs.writeFile('index.html', html, (err) =>
             err ? console.log(err) : console.log('Successfully created index.html!')
+            
+            
     
-            )
+            );
+        }
         });
     }
 }   
     askQuestion();
+
+    // function Employee(name, id, email) {
+    //     const employee = new Employee('Employee')
+    //     this.name = name;
+    //     this.id = id;
+    //     this.email = email;
+    //     this.getRole = function(){
+    //         return `Name: ${this.name}, ID: ${this.id}, Email: ${this.email},`
+    //     }
+    // }
 
