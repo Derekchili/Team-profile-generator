@@ -4,7 +4,9 @@ const Manager = require('./Manager');
 const inquirer = require('inquirer');
 
 const fs = require('fs');
-const generateHtml = require('../util/generateHtml');
+
+const { generateManager, generateEngineer, generateIntern, } = require('../util/generateHtml');
+
 
 const teamMembers = [];
 
@@ -146,8 +148,13 @@ function askQuestion() {
             } else if (internAnswers.teamMemberType === 'Intern') {
                 askInternQuestions();
             } else {
-                const html = generateHtml(teamMembers);
-                fs.writeFile('index.html', html, (err) =>
+                const teamHtml = generateManager(teamMembers[0]) +
+        teamMembers.filter(member => member instanceof Engineer)
+            .map(member => generateEngineer(member)).join('') +
+        teamMembers.filter(member => member instanceof Intern)
+            .map(member => generateIntern(member)).join('');
+                  
+                fs.writeFile('index.html', teamHtml, (err) =>
             err ? console.log(err) : console.log('Successfully created index.html!')    
             );
         }
@@ -156,13 +163,5 @@ function askQuestion() {
 }   
     askQuestion();
 
-    // function Employee(name, id, email) {
-    //     const employee = new Employee('Employee')
-    //     this.name = name;
-    //     this.id = id;
-    //     this.email = email;
-    //     this.getRole = function(){
-    //         return `Name: ${this.name}, ID: ${this.id}, Email: ${this.email},`
-    //     }
-    // }
+  
 

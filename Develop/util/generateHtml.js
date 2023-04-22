@@ -2,8 +2,15 @@
 const generateTeam = team => {
 
     // create the manager html
-    const generateManager = manager => {
-        return `
+    const generateManager = managerAnswers => {
+        const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber)
+        return{
+            name: manager.getName(),
+            id: manager.getId(),
+            email: manager.getEmail(),
+            officeNumber: manager.officeNumber()
+        }
+            `
         <div class="card employee-card">
         <div class="card-header">
             <h2 class="card-title">${manager.getName()}</h2>
@@ -19,10 +26,19 @@ const generateTeam = team => {
     </div>
         `;
     };
+module.exports = { generateManager };
 
     // create the html for engineers
-    const generateEngineer = engineer => {
-        return `
+    const generateEngineer = engineerAnswers => {
+        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.officeNumber)
+
+        return{
+            name: engineer.getName(),
+            id: engineer.getId(),
+            email: engineer.getEmail(),
+            github: engineer.getGithub()
+        }
+         `
         <div class="card employee-card">
     <div class="card-header">
         <h2 class="card-title">${engineer.getName()}</h2>
@@ -38,10 +54,19 @@ const generateTeam = team => {
 </div>
         `;
     };
+module.exports = { generateEngineer };
 
     // create the html for interns
-    const generateIntern = intern => {
-        return `
+    const generateIntern = internAnswers => {
+        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.officeNumber)
+
+        return{
+            name: intern.getName(),
+            id: intern.getId(),
+            email: intern.getEmail(),
+            school: intern.getSchool()
+        }
+         `
         <div class="card employee-card">
     <div class="card-header">
         <h2 class="card-title">${intern.getName()}</h2>
@@ -57,6 +82,7 @@ const generateTeam = team => {
 </div>
         `;
     };
+module.exports = { generateIntern };
 
     const html = [];
 
