@@ -2,7 +2,7 @@ const Engineer = require('./Engineer');
 const Intern = require('./Intern');
 const Manager = require('./Manager');
 const inquirer = require('inquirer');
-
+const fs = require('fs');
 const generateHtml = require('../util/generateHtml');
 
 const teamMembers = [];
@@ -131,6 +131,10 @@ function askQuestion() {
             } else {
                 generateHtml(teamMembers);
             }
+            fs.writeFile('index.html', htmlPageContent, (err) =>
+            err ? console.log(err) : console.log('Successfully created index.html!')
+    
+            )
         });
     }
 }   
