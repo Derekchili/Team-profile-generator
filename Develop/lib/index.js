@@ -2,7 +2,7 @@ const Engineer = require('./Engineer');
 const Intern = require('./Intern');
 const Manager = require('./Manager');
 const inquirer = require('inquirer');
-// const Employee = require('./Employee');
+
 const fs = require('fs');
 const generateHtml = require('../util/generateHtml');
 
@@ -11,6 +11,7 @@ const teamMembers = [];
 function askQuestion() {
     // console.log('Welcome to the team generator');
     // console.log('use: npm run reset');
+
     inquirer.prompt([
         {
             type: 'input',
@@ -147,10 +148,7 @@ function askQuestion() {
             } else {
                 const html = generateHtml(teamMembers);
                 fs.writeFile('index.html', html, (err) =>
-            err ? console.log(err) : console.log('Successfully created index.html!')
-            
-            
-    
+            err ? console.log(err) : console.log('Successfully created index.html!')    
             );
         }
         });
