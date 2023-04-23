@@ -1,16 +1,14 @@
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
+
 // create the team
 const generateTeam = team => {
 
     // create the manager html
     const generateManager = managerAnswers => {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber)
-        return{
-            name: manager.getName(),
-            id: manager.getId(),
-            email: manager.getEmail(),
-            officeNumber: manager.officeNumber()
-        }
-            `
+        return`
         <div class="card employee-card">
         <div class="card-header">
             <h2 class="card-title">${manager.getName()}</h2>
@@ -26,19 +24,13 @@ const generateTeam = team => {
     </div>
         `;
     };
-module.exports = { generateManager };
+// module.exports = { generateManager };
 
     // create the html for engineers
     const generateEngineer = engineerAnswers => {
-        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.officeNumber)
+        const engineer = new Engineer(engineerAnswers.name, engineerAnswers.id, engineerAnswers.email, engineerAnswers.github);
 
-        return{
-            name: engineer.getName(),
-            id: engineer.getId(),
-            email: engineer.getEmail(),
-            github: engineer.getGithub()
-        }
-         `
+        return `
         <div class="card employee-card">
     <div class="card-header">
         <h2 class="card-title">${engineer.getName()}</h2>
@@ -54,19 +46,13 @@ module.exports = { generateManager };
 </div>
         `;
     };
-module.exports = { generateEngineer };
+// module.exports = { generateEngineer };
 
     // create the html for interns
     const generateIntern = internAnswers => {
-        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.officeNumber)
+        const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school)
 
-        return{
-            name: intern.getName(),
-            id: intern.getId(),
-            email: intern.getEmail(),
-            school: intern.getSchool()
-        }
-         `
+        return `
         <div class="card employee-card">
     <div class="card-header">
         <h2 class="card-title">${intern.getName()}</h2>
@@ -82,7 +68,7 @@ module.exports = { generateEngineer };
 </div>
         `;
     };
-module.exports = { generateIntern };
+// module.exports = { generateIntern };
 
     const html = [];
 

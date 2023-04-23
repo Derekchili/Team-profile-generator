@@ -5,7 +5,7 @@ const inquirer = require('inquirer');
 
 const fs = require('fs');
 
-const { generateManager, generateEngineer, generateIntern, } = require('../util/generateHtml');
+const generatePage = require('../util/generateHtml');
 
 
 const teamMembers = [];
@@ -148,20 +148,25 @@ function askQuestion() {
             } else if (internAnswers.teamMemberType === 'Intern') {
                 askInternQuestions();
             } else {
-                const teamHtml = generateManager(teamMembers[0]) +
-        teamMembers.filter(member => member instanceof Engineer)
-            .map(member => generateEngineer(member)).join('') +
-        teamMembers.filter(member => member instanceof Intern)
-            .map(member => generateIntern(member)).join('');
-                  
-                fs.writeFile('index.html', teamHtml, (err) =>
-            err ? console.log(err) : console.log('Successfully created index.html!')    
-            );
-        }
+                fs.writeFile("./index.html", generatePage(teamMembers), err => {
+                    if (err) throw err;
+                    console.log("Your team profile has been generated!");
+                  });
+                }        
+       
         });
     }
 }   
     askQuestion();
 
   
-
+    // const teamHtml = generateManager(teamMembers[0]) +
+    // teamMembers.filter(member => member instanceof Engineer)
+    //     .map(member => generateEngineer(member)).join('') +
+    // teamMembers.filter(member => member instanceof Intern)
+    //     .map(member => generateIntern(member)).join('');
+              
+    //         fs.writeFile('index.html', teamHtml, (err) =>
+    //     err ? console.log(err) : console.log('Successfully created index.html!')    
+    //     );
+    // }
