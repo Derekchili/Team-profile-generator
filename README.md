@@ -12,13 +12,18 @@ When you are in the js file you open a integrated terminal and type node filenam
 Here is the video link, github repo link and some screenshots to show you how to use this app.
 
 Video: https://drive.google.com/file/d/1xyrsejhxi40lI2ZleUFBqNajObnVytpb/view
+
+
 Github: https://github.com/Derekchili/Team-profile-generator.git
 
 
 
 ![alt text](assets/images/screenshot.png)
+
 ![alt text](assets/images/screenshot1.png)
+
 ![alt text](assets/images/screenshot2.png)
+
 ![alt text](assets/images/screenshot3.png)
 
 
