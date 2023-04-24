@@ -11,9 +11,6 @@ const generatePage = require('../util/generateHtml');
 const teamMembers = [];
 
 function askQuestion() {
-    // console.log('Welcome to the team generator');
-    // console.log('use: npm run reset');
-
     inquirer.prompt([
         {
             type: 'input',
@@ -144,7 +141,7 @@ function askQuestion() {
             const intern = new Intern(internAnswers.name, internAnswers.id, internAnswers.email, internAnswers.school);
             teamMembers.push(intern);
             if (internAnswers.teamMemberType === 'Engineer') {
-                askEngineerQuestion();
+                askEngineerQuestions();
             } else if (internAnswers.teamMemberType === 'Intern') {
                 askInternQuestions();
             } else {
@@ -159,14 +156,3 @@ function askQuestion() {
 }   
     askQuestion();
 
-  
-    // const teamHtml = generateManager(teamMembers[0]) +
-    // teamMembers.filter(member => member instanceof Engineer)
-    //     .map(member => generateEngineer(member)).join('') +
-    // teamMembers.filter(member => member instanceof Intern)
-    //     .map(member => generateIntern(member)).join('');
-              
-    //         fs.writeFile('index.html', teamHtml, (err) =>
-    //     err ? console.log(err) : console.log('Successfully created index.html!')    
-    //     );
-    // }

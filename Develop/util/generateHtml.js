@@ -4,7 +4,6 @@ const Intern = require('../lib/Intern');
 
 // create the team
 const generateTeam = team => {
-
     // create the manager html
     const generateManager = managerAnswers => {
         const manager = new Manager(managerAnswers.name, managerAnswers.id, managerAnswers.email, managerAnswers.officeNumber)
@@ -73,16 +72,16 @@ const generateTeam = team => {
     const html = [];
 
     html.push(team
-        .filter(employee => employee.getRole() === "Manager")
+        .filter(employee => employee.role === "Manager")
         .map(manager => generateManager(manager))
     );
     html.push(team
-        .filter(employee => employee.getRole() === "Engineer")
+        .filter(employee => employee.role === "Engineer")
         .map(engineer => generateEngineer(engineer))
         .join("")
     );
     html.push(team
-        .filter(employee => employee.getRole() === "Intern")
+        .filter(employee => employee.role === "Intern")
         .map(intern => generateIntern(intern))
         .join("")
     );
@@ -92,7 +91,7 @@ const generateTeam = team => {
 }
 
 // export function to generate entire page
-module.exports = team => {
+function generateHtml(team)  {
 
     return `
     <!DOCTYPE html>
@@ -128,3 +127,4 @@ module.exports = team => {
 </html>
     `;
 };
+module.exports = generateHtml;
